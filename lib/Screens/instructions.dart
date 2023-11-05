@@ -1,11 +1,10 @@
-// instructions_page.dart
 import 'package:flutter/material.dart';
-
 class InstructionsPage extends StatelessWidget {
   final String assetPath;
   final String instructions;
+  final List<String> imagePaths; // List of image paths
 
-  InstructionsPage({required this.assetPath, required this.instructions});
+  InstructionsPage({required this.assetPath, required this.instructions, required this.imagePaths});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +14,30 @@ class InstructionsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Image(
-          //   image: AssetImage(assetPath),
-          // ),
           Text(instructions),
+          SizedBox(height: 5), // Reduce the gap between text and images
+
+          Container(
+            height: 200, // Set the desired height for the image
+            child: Image(
+              image: AssetImage(assetPath), // Use the received assetPath
+            ),
+          ),
+
+          SizedBox(height: 10), // Add spacing between the text and the image
+
+          // Display multiple images using a ListView
+          Expanded(
+            child: ListView(
+              scrollDirection: Axis.vertical, // Scroll horizontally
+              children: imagePaths
+                  .map((path) => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image(image: AssetImage(path)),
+                      ))
+                  .toList(),
+            ),
+          ),
         ],
       ),
     );

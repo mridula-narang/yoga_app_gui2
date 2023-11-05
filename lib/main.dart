@@ -23,15 +23,18 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomePage(),
         '/instructions': (context) {
-          final arguments = ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-          // assetPath = arguments['assetPath'];
-          final instructions = arguments['instructions'];
+          final arguments = ModalRoute.of(context)!.settings.arguments as Map<String, String?>;
+          final assetPath = arguments['assetPath'] ?? ''; // Use the null-aware operator (??) to provide a default empty string if it's null
+          final instructions = arguments['instructions'] ?? ''; // Use the null-aware operator (??) to provide a default empty string if it's null
 
           return InstructionsPage(
-            //assetPath: 'assetPath',
-            instructions: 'instructions',
+            assetPath: assetPath,
+            instructions: instructions, 
+            imagePaths: [],
           );
         },
+
+
       }
     );
   }
