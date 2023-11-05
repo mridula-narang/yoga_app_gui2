@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_app_gui2/Screens/homepage.dart';
 import 'package:yoga_app_gui2/Screens/instructions.dart';
+import 'package:yoga_app_gui2/Screens/mainpage.dart';
 
 
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
+        '/': (context) => const MainHomePage(),
         '/instructions': (context) {
           final arguments = ModalRoute.of(context)!.settings.arguments as Map<String, String?>;
           final assetPath = arguments['assetPath'] ?? ''; // Use the null-aware operator (??) to provide a default empty string if it's null

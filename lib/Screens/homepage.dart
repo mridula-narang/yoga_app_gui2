@@ -12,23 +12,25 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Yoga Monitoring system'),
+        title: const Text('Yoga Monitoring system'),
       ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 width: MediaQuery.of(context).size.width, // Set the width to the screen width
-                child: Card(
+                child: const Card(
                   child: Image(
                     image: AssetImage('assets/tree1.jpg'),
                     fit: BoxFit.cover, // Make the image cover the card
                   ),
                 ),
               ),
-              SizedBox(height: 5),
-              Text(
+              const SizedBox(height: 5),
+              const Text(
                 'Vrikshasana',
                 style: TextStyle(
                   fontSize: 20,
@@ -40,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                   decorationStyle: TextDecorationStyle.dotted,
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -49,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                       builder: (context) => InstructionsPage(
                         assetPath: 'assets/tree1.jpg',
                         instructions: 'These are the instructions for vrikshasana.',
-                        imagePaths: [
+                        imagePaths: const [
                           'assets/tree2.jpg',
                           'assets/tree3.jpg',
                         ],
@@ -57,21 +59,21 @@ class _HomePageState extends State<HomePage> {
                     ),
                   );
                 },
-                child: Text('View Instructions for vrikshasana'),
+                child: const Text('View Instructions for vrikshasana'),
               ),
 
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Container(
                 width: MediaQuery.of(context).size.width, // Set the width to the screen width
-                child: Card(
+                child: const Card(
                   child: Image(
                     image: AssetImage('assets/asana2.jpeg'),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              SizedBox(height: 5),
-              Text(
+              const SizedBox(height: 5),
+              const Text(
                 'Sheersasana',
                 style: TextStyle(
                   fontSize: 20,
@@ -91,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                       builder: (context) => InstructionsPage(
                         assetPath: 'assets/asana2.jpeg',
                         instructions: 'These are the instructions for Sheersasana.',
-                        imagePaths: [
+                        imagePaths: const [
                           'assets/asana2_s1.jpg',
                           'assets/asana2_s2.jpg',
                           'assets/asana2_s3.jpg',
@@ -104,21 +106,21 @@ class _HomePageState extends State<HomePage> {
                     ),
                   );
                 },
-                child: Text('View Instructions for Sheersasana'),
+                child: const Text('View Instructions for Sheersasana'),
               ),
 
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Container(
                 width: MediaQuery.of(context).size.width, // Set the width to the screen width
-                child: Card(
+                child: const Card(
                   child: Image(
                     image: AssetImage('assets/asana3.jpeg'),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              SizedBox(height: 5),
-              Text(
+              const SizedBox(height: 5),
+              const Text(
                 'Sukhasana',
                 style: TextStyle(
                   fontSize: 20,
@@ -138,16 +140,16 @@ class _HomePageState extends State<HomePage> {
                       builder: (context) => InstructionsPage(
                         assetPath: 'assets/asana3.jpeg',
                         instructions: 'These are the instructions for sukhasana.',
-                        imagePaths: [
+                        imagePaths: const [
                           'assets/step.jpg',
                         ],
                       ),
                     ),
                   );
                 },
-                child: Text('View Instructions for Sukhasana'),
+                child: const Text('View Instructions for Sukhasana'),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
             ],
           ),
         ),
