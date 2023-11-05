@@ -132,13 +132,17 @@ class _HomePageState extends State<HomePage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(
+                  Navigator.push(
                     context,
-                    '/instructions',
-                    arguments: {
-                      'assetPath': 'assets/asana3.jpeg',
-                      'instructions': 'These are the instructions for Sukhasana.',
-                    },
+                    MaterialPageRoute(
+                      builder: (context) => InstructionsPage(
+                        assetPath: 'assets/asana3.jpeg',
+                        instructions: 'These are the instructions for sukhasana.',
+                        imagePaths: [
+                          'assets/step.jpg',
+                        ],
+                      ),
+                    ),
                   );
                 },
                 child: Text('View Instructions for Sukhasana'),
