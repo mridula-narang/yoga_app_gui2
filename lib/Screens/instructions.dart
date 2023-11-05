@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_app_gui2/Screens/perform.dart';
 class InstructionsPage extends StatelessWidget {
   final String assetPath;
   final String instructions;
@@ -38,6 +39,17 @@ class InstructionsPage extends StatelessWidget {
                   .toList(),
             ),
           ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Perform(),
+                  ),
+                );
+              },
+              child: Text('Get Started'),
+            ),
         ],
       ),
     );
