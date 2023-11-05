@@ -1,6 +1,6 @@
 # yoga_app_gui2
 
-A new Flutter project.
+A yoga monitoring and correction application.
 
 ## Getting Started
 
