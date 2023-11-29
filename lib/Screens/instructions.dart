@@ -18,14 +18,14 @@ class InstructionsPage extends StatelessWidget {
           Text(instructions),
           SizedBox(height: 5), // Reduce the gap between text and images
 
-          Container(
-            height: 200, // Set the desired height for the image
+          Expanded(
             child: Image(
-              image: AssetImage(assetPath), // Use the received assetPath
-            ),
+                image: AssetImage(assetPath), // Use the received assetPath
+              ),
           ),
 
-          SizedBox(height: 10), // Add spacing between the text and the image
+
+          SizedBox(height: 3), // Add spacing between the text and the image
 
           // Display multiple images using a ListView
           Expanded(
@@ -33,7 +33,7 @@ class InstructionsPage extends StatelessWidget {
               scrollDirection: Axis.vertical, // Scroll horizontally
               children: imagePaths
                   .map((path) => Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(2.0),
                         child: Image(image: AssetImage(path)),
                       ))
                   .toList(),
