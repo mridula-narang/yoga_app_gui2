@@ -15,28 +15,43 @@ class InstructionsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Text(instructions),
-          SizedBox(height: 5), // Reduce the gap between text and images
-
-          Expanded(
-            child: Image(
-                image: AssetImage(assetPath), // Use the received assetPath
-              ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+            child: Text(instructions,
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.blue,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic,
+            ),
+            ),
           ),
+          SizedBox(height: 10), // Reduce the gap between text and images
 
 
-          SizedBox(height: 3), // Add spacing between the text and the image
+              Container(
+              height: 500, // Set the desired height
+              child: Image(
+                image: AssetImage(assetPath), // Use the received assetPath
+                fit: BoxFit.fill,
+              ),
+            ),
+
+
+
+
+          SizedBox(height: 10), // Add spacing between the text and the image
 
           // Display multiple images using a ListView
           Expanded(
-            child: ListView(
-              scrollDirection: Axis.vertical, // Scroll horizontally
-              children: imagePaths
-                  .map((path) => Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Image(image: AssetImage(path)),
-                      ))
-                  .toList(),
+            child: Text('Instructions for Vrikshasana. \n Initial condition: Stand straight.\n Step 1: Raise one leg. \n Step 2: Fold arms and bring them to chest level.\n Step 3: Stretch hands in vertical direction till straight. Ensure elbow is not bent.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.blue,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic,
+            ),
             ),
           ),
           ElevatedButton(

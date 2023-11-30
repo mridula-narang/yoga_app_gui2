@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:yoga_app_gui2/Screens/step_two.dart';
 
 class Perform extends StatefulWidget {
   const Perform({Key? key}) : super(key: key);
@@ -10,21 +11,26 @@ class Perform extends StatefulWidget {
 
 class _PerformState extends State<Perform> {
   late VideoPlayerController _videoPlayerController;
+  bool isVideoVisible = false;
+  bool isVideoCompleted = false;
 
   @override
   void initState() {
     super.initState();
     _videoPlayerController = VideoPlayerController.asset(
-      'assets/your_video.mp4', // Replace with the actual path to your video in the assets folder
+      'assets/step1.mp4', // Replace with the actual path to your video in the assets folder
     )..initialize().then((_) {
-      setState(() {});
-    });
+        // Ensure the first frame is shown after the video is initialized
+        setState(() {});
+      });
 
     // Listen for video completion
     _videoPlayerController.addListener(() {
       if (_videoPlayerController.value.position ==
           _videoPlayerController.value.duration) {
-        // Handle video completion if needed
+        setState(() {
+          isVideoCompleted = true;
+        });
       }
     });
   }
@@ -41,48 +47,88 @@ class _PerformState extends State<Perform> {
       appBar: AppBar(
         title: const Text('Perform Asana'),
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Text(
-            'Step 1',
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.blue,
-              fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic,
+          Column(
+            children: [
+              Text(
+                'Step 1',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              SizedBox(height: 5),
+              Expanded(
+                child: isVideoVisible
+                    ? Container() // Empty container when video is visible to take up space
+                    : ListView(
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        Card(
+                          child: Image(
+                            image: AssetImage('assets/vs1i.jpg'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Card(
+                          child: Image(
+                            image: AssetImage('assets/vs1f.jpg'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ]
+                    ),
+              ),
+              SizedBox(height: 5),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    isVideoVisible = !isVideoVisible;
+                    if (isVideoVisible) {
+                      _videoPlayerController.play();
+                    } else {
+                      _videoPlayerController.pause();
+                    }
+                  });
+                },
+                child: Text('See video'),
+              ),
+            ],
+          ),
+          Visibility(
+            visible: isVideoVisible,
+            child: Center(
+              child: _videoPlayerController.value.isInitialized
+                  ? AspectRatio(
+                      aspectRatio: _videoPlayerController.value.aspectRatio,
+                      child: Stack(
+                        children: [
+                          VideoPlayer(_videoPlayerController),
+                          if (isVideoCompleted)
+                            Positioned(
+                              bottom: 20,
+                              right: 20,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => NextStep(),
+                                      ),
+                                    );
+                                },
+                                child: Text('Next Step'),
+                              ),
+                            ),
+                        ],
+                      ),
+                    )
+                  : CircularProgressIndicator(),
             ),
           ),
-          SizedBox(height: 5),
-          ElevatedButton(
-            onPressed: () {
-              _videoPlayerController.play();
-            },
-            child: Text('See video'),
-          ),
-          SizedBox(height: 5),
-          Container(
-            height: 200, // Set a specific height for the ListView
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Image.asset(
-                  'assets/vs1i.jpg',
-                  fit: BoxFit.cover,
-                ),
-                Image.asset(
-                  'assets/vs1f.jpg',
-                  fit: BoxFit.cover,
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 5),
-          _videoPlayerController.value.isInitialized
-              ? AspectRatio(
-                  aspectRatio: _videoPlayerController.value.aspectRatio,
-                  child: VideoPlayer(_videoPlayerController),
-                )
-              : CircularProgressIndicator(),
         ],
       ),
     );
